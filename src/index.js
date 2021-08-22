@@ -18,14 +18,39 @@ import reportWebVitals from './reportWebVitals';
 
 //二、函数组件
 
-function Child(props) {
-    return <div>123</div>
-}
-function Welcome(props) {
-    return <Child />
-    return <div className="title" style={{ color: 'red' }}><span>{props.name}</span></div>
+// function Child(props) {
+//     return <div>123</div>
+// }
+// function Welcome(props) {
+//     return <Child />
+//     return <div className="title" style={{ color: 'red' }}><span>{props.name}</span></div>
+// }
+
+// console.log(<Welcome name="hello" />)
+// ReactDOM.render(<Welcome name="hello" />, document.getElementById('root'))
+// reportWebVitals();
+
+//三、类组件
+class Counter extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            number: 0
+        }
+    }
+    handlePlus = () => {
+        this.setState({
+            number: this.state.number + 1
+        })
+    }
+    render() {
+        return <div>
+            <span>{this.state.number}</span>
+            <button onClick={this.handlePlus}>加</button>
+        </div>
+    }
 }
 
-console.log(<Welcome name="hello" />)
-ReactDOM.render(<Welcome name="hello" />, document.getElementById('root'))
-// reportWebVitals();
+console.log(<Counter />)
+
+ReactDOM.render(<Counter />, document.getElementById('root'))
