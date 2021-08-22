@@ -1,3 +1,5 @@
+import { addEvent } from "./event"
+
 /**
  * 将虚拟DOM转化为真实DOM
  * 将虚拟DOM上的属性更新到真实DOM上
@@ -81,7 +83,8 @@ function updateProps(dom, props) {
         } else if (key === 'className') {   //将虚拟DOM类名添加到真实DOM上去
             dom.className = props.className
         } else if (key.startsWith('on')) {
-            dom[key.toLocaleLowerCase()] = props[key]
+            // dom[key.toLocaleLowerCase()] = props[key]
+            addEvent(dom,key.toLocaleLowerCase(),props[key])
         }
     }
 

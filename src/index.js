@@ -1,8 +1,8 @@
 import React from './react';
 import ReactDOM from './react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+// import './index.css';
+// import App from './App';
+// import reportWebVitals from './reportWebVitals';
 
 // ReactDOM.render(
 //   <React.StrictMode>
@@ -41,7 +41,16 @@ class Counter extends React.Component {
     handlePlus = () => {
         this.setState({
             number: this.state.number + 1
+        }, () => {
+            console.log("回调1", this.state.number)
         })
+        console.log(this.state.number)
+        this.setState({
+            number: this.state.number + 1
+        }, () => {
+            console.log("回调1", this.state.number)
+        })
+        console.log(this.state.number)
     }
     render() {
         return <div>
