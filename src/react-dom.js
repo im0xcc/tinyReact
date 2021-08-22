@@ -30,7 +30,13 @@ function createDOM(vdom) {
 
     //处理vdom是虚拟DOM
     const { type, props } = vdom
-    dom = document.createElement(type)
+
+    if (typeof type === 'function') {   //处理函数组件
+        return mountFunctionComponent(vdom)
+    } else {  //处理原生组件
+        dom = document.createElement(type)
+    }
+
     updateProps(dom, props)
 
     //处理子元素情况
@@ -84,6 +90,12 @@ function reconcilChildren(childrenVDOM, parentDOM) {
     for (let i = 0; i < childrenVDOM.length; i++) {
         render(childrenVDOM[i], parentDOM)
     }
+}
+
+function mountFunctionComponent(vdom) {
+    const { type, props } = vdom
+    let renderVDOM = type(props)
+    return createDOM(renderVDOM)
 }
 
 const ReactDOM = {
